@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6756902954534410097}
   - component: {fileID: 6756902954534410098}
   - component: {fileID: 6756902954534410099}
+  - component: {fileID: 4239339214401605903}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -56,6 +57,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +83,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &6756902954534410098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105,4 +109,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e17b61418a1d54ea4b0d8be6d51683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  bulletSpeed: 40
+--- !u!54 &4239339214401605903
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756902954534410100}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1

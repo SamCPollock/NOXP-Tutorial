@@ -6,23 +6,29 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public GameObject playerBulletPrefab;
+    Rigidbody playerRb;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       playerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-    float maxDistanceToMove = speed * Time.deltaTime;
+        // Find a new position to move to 
+        Vector3 inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 lookAtPosition = transform.position + inputVector;
 
-            transform.position += Vector3.forward * Input.GetAxis("Vertical") * maxDistanceToMove;
-            transform.position += Vector3.right * Input.GetAxis("Horizontal") *maxDistanceToMove;
-    if (Input.GetMouseButton(0))
+        // WASD TO MOVE
+        playerRb.velocity = inputVector * speed;
+        transform.LookAt(lookAtPosition); // Face the new direction
+        
+        // CLICK TO FIRE
+    if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(playerBulletPrefab, transform.position, transform.rotation);
+            Instantiate(playerBulletPrefab, transform.position + transform.forward, transform.rotation);
         }
     }
 }
