@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour
     public float bulletSpeed;
     Rigidbody bulletRb;
     public float secondsUntilDestroyed;
+    public int bulletDamage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -38,10 +39,19 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
+        //    Destroy(collision.gameObject);
+        //    Destroy(gameObject);
+        //}
+        if (collision.gameObject.GetComponent<HealthSystem>() != null)
         {
-            Destroy(collision.gameObject);
+            HealthSystem theirHealthSystem = collision.gameObject.GetComponent<HealthSystem>();
+            // Non-method version of take damage.
+            //collision.gameObject.GetComponent<HealthSystem>().health -= bulletDamage;
+            theirHealthSystem.TakeDamage(1);
             Destroy(gameObject);
+
         }
     }
 }

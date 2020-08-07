@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
        playerRb = GetComponent<Rigidbody>();
-        References.thePlayer = this;
+        References.thePlayer = gameObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame

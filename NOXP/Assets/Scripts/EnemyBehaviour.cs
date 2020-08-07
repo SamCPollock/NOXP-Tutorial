@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     Rigidbody enemyRigidbody;
-    public GameObject player;
     public float enemySpeed;
     public float secondsBetweenSpawns;
+    public int enemyDamage;
     private float spawnCooldown = 5;
 
 
@@ -20,16 +20,28 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnCooldown > 0)
+        // ENEMY CLONE BEHAVIOUR
+        //if (spawnCooldown > 0)
+        //{
+        //    spawnCooldown -= Time.deltaTime;
+        //}
+        //if (spawnCooldown <= 0)
+        //{
+        //    spawnCooldown = secondsBetweenSpawns;
+        //    Instantiate(gameObject);
+        //}
+        if (References.thePlayer != null)
         {
-            spawnCooldown -= Time.deltaTime;
+            Vector3 vectorToPlayer = References.thePlayer.transform.position - transform.position;
+            enemyRigidbody.velocity = vectorToPlayer.normalized * enemySpeed;
         }
-        if (spawnCooldown <= 0)
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            spawnCooldown = secondsBetweenSpawns;
-            Instantiate(gameObject);
+            collision.gameObject.GetComponent<HealthSystem>().TakeDamage(enemyDamage);
         }
-        Vector3 vectorToPlayer = player.transform.position - transform.position;
-        enemyRigidbody.velocity = vectorToPlayer.normalized * enemySpeed;
     }
 }
