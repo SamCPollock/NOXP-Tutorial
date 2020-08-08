@@ -33,6 +33,8 @@ public class HealthSystem : MonoBehaviour
         currentHealth -= damageTaken;
         if (currentHealth <= 0)
         {
+            Instantiate(deathEffect, this.transform.position, this.transform.rotation);
+
             Destroy(gameObject);
         }
     }
@@ -41,7 +43,6 @@ public class HealthSystem : MonoBehaviour
     {
         if (myHealthBar != null)
         {
-            Instantiate(deathEffect, this.transform.position, this.transform.rotation);
             Destroy(myHealthBar.gameObject);
         }
     }
