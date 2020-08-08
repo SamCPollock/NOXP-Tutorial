@@ -113,7 +113,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!114 &6714060506912074438
 MonoBehaviour:
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbb01708e398e84a83c36243ddef754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 2
   healthBarPrefab: {fileID: 5285002580037518807, guid: 18fad88061dda974fb0ad8ecf8386950,
     type: 3}
   deathEffect: {fileID: 3072041246180570879, guid: 1651db70af159f642a66270b234195b8,

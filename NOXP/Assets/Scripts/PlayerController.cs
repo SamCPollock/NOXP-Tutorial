@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-    public GameObject playerBulletPrefab;
     Rigidbody playerRb;
-    public float secondsBetweenShots;
-    private float shotCooldown;
+    public WeaponBehaviour myWeapon;
 
 
     // Start is called before the first frame update
@@ -21,10 +19,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shotCooldown > 0)
-        {
-            shotCooldown -= Time.deltaTime;
-        }
         // Find a new position to move to 
         Vector3 inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -40,16 +34,12 @@ public class PlayerController : MonoBehaviour
         // Vector3 lookAtPosition = transform.position + inputVector; // This makes you look where you are moving
         Vector3 lookAtPosition = cursorPosition;
         transform.LookAt(lookAtPosition); // Face the new direction
-        
+
         // CLICK TO FIRE
-    if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
-            if (shotCooldown <= 0)
-            {
-                Instantiate(playerBulletPrefab, transform.position + transform.forward, transform.rotation);
-                shotCooldown = secondsBetweenShots;
-                //playerRb.AddForce(-lookAtPosition * 100); // Trying to get it to push itself back when shooting.
-            }
+            // Tell weapon to fire
+            myWeapon.FireWeapon();
         }
     }
 }

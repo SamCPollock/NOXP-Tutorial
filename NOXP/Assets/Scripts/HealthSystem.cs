@@ -30,12 +30,17 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(int damageTaken)
     {
-        currentHealth -= damageTaken;
-        if (currentHealth <= 0)
+        if (currentHealth > 0)
         {
-            Instantiate(deathEffect, this.transform.position, this.transform.rotation);
-
-            Destroy(gameObject);
+            currentHealth -= damageTaken;
+            if (currentHealth <= 0)
+            {
+                if (deathEffect != null)
+                {
+                    Instantiate(deathEffect, this.transform.position, this.transform.rotation);
+                }
+                Destroy(gameObject);
+            }
         }
     }
 
