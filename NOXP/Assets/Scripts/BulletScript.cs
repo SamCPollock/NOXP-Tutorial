@@ -14,7 +14,7 @@ public class BulletScript : MonoBehaviour
     void Start()
     {
         bulletRb = GetComponent<Rigidbody>();
-        bulletRb.velocity = transform.forward * bulletSpeed;
+        bulletShoot();
     }
 
     // Update is called once per frame
@@ -37,6 +37,11 @@ public class BulletScript : MonoBehaviour
     //    }
     }
 
+    public void bulletShoot()
+    {
+        bulletRb.velocity = transform.forward * bulletSpeed;
+
+    }
     private void OnCollisionEnter(Collision collision)
     {
         //if (collision.gameObject.CompareTag("Enemy"))

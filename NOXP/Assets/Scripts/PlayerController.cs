@@ -6,7 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     Rigidbody playerRb;
-    public WeaponBehaviour myWeapon;
+    public List<WeaponBehaviour> weaponList = new List<WeaponBehaviour>();
+    public int selectedWeaponIndex;
+    public bool hasSmg = false;
+    private bool hasShotgun = false;
+
 
 
     // Start is called before the first frame update
@@ -14,6 +18,7 @@ public class PlayerController : MonoBehaviour
     {
        playerRb = GetComponent<Rigidbody>();
         References.thePlayer = gameObject.GetComponent<PlayerController>();
+        selectedWeaponIndex = 0;
     }
 
     // Update is called once per frame
@@ -39,7 +44,41 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             // Tell weapon to fire
-            myWeapon.FireWeapon();
+            weaponList[selectedWeaponIndex].FireWeapon(cursorPosition);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            selectedWeaponIndex += 1;
+           
+            if (selectedWeaponIndex == 1 && !hasSmg)
+            {
+                selectedWeaponIndex += 1;
+            }
+            if (selectedWeaponIndex == 2 && !hasShotgun)
+            {
+                selectedWeaponIndex += 1;
+            }
+            if (selectedWeaponIndex >= weaponList.Count)
+            {
+                selectedWeaponIndex = 0;
+            }
+
         }
     }
+    
+    public void GetWeapon(int weaponIndex)
+    {
+        if (weaponIndex == 1)
+        {
+            hasSmg = true;
+            selectedWeaponIndex = 1;
+        }
+
+        if (weaponIndex == 2)
+        {
+            hasShotgun = true;
+            selectedWeaponIndex = 2;
+        }
+    }    
 }
