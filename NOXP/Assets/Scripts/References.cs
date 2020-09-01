@@ -7,5 +7,6 @@ public static class References
 
     public static PlayerController thePlayer;
     public static GameObject canvas;
+    public static EnemySpawner enemySpawner;
 
 }

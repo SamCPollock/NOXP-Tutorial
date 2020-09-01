@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public int selectedWeaponIndex;
     public bool hasSmg = false;
     private bool hasShotgun = false;
+    private bool hasPistol = false;
 
 
 
@@ -49,21 +50,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            selectedWeaponIndex += 1;
-           
-            if (selectedWeaponIndex == 1 && !hasSmg)
-            {
-                selectedWeaponIndex += 1;
-            }
-            if (selectedWeaponIndex == 2 && !hasShotgun)
-            {
-                selectedWeaponIndex += 1;
-            }
-            if (selectedWeaponIndex >= weaponList.Count)
-            {
-                selectedWeaponIndex = 0;
-            }
-
+            ChangeWeapon(selectedWeaponIndex + 1);
         }
     }
     
@@ -72,13 +59,50 @@ public class PlayerController : MonoBehaviour
         if (weaponIndex == 1)
         {
             hasSmg = true;
-            selectedWeaponIndex = 1;
+            ChangeWeapon(1);
         }
 
         if (weaponIndex == 2)
         {
             hasShotgun = true;
-            selectedWeaponIndex = 2;
+            ChangeWeapon(2);
         }
     }    
+    public void ChangeWeapon(int index)
+    {
+        //weaponList[selectedWeaponIndex].gameObject.SetActive(false);
+        selectedWeaponIndex = index;
+
+        if (selectedWeaponIndex == 0 && !hasPistol)
+        {
+            selectedWeaponIndex += 1;
+        }
+
+        if (selectedWeaponIndex == 1 && !hasSmg)
+        {
+            selectedWeaponIndex += 1;
+        }
+        if (selectedWeaponIndex == 2 && !hasShotgun)
+        {
+            selectedWeaponIndex += 1;
+        }
+        if (selectedWeaponIndex >= weaponList.Count)
+        {
+            selectedWeaponIndex = 0;
+        }
+       // weaponList[selectedWeaponIndex].gameObject.SetActive(true);
+
+        for(int i = 0; i < weaponList.Count; i++)
+        {
+            if (i == selectedWeaponIndex)
+            {
+                weaponList[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                weaponList[i].gameObject.SetActive(false);
+
+            }
+        }
+    }
 }

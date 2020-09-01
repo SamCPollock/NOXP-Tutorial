@@ -52,9 +52,11 @@ public class BulletScript : MonoBehaviour
         if (collision.gameObject.GetComponent<HealthSystem>() != null)
         {
             HealthSystem theirHealthSystem = collision.gameObject.GetComponent<HealthSystem>();
+            EnemyBehaviour theirEnemyBehaviour = collision.gameObject.GetComponent<EnemyBehaviour>();
             // Non-method version of take damage.
             //collision.gameObject.GetComponent<HealthSystem>().health -= bulletDamage;
             theirHealthSystem.TakeDamage(1);
+            //theirEnemyBehaviour.alerted = true;
             Destroy(gameObject);
 
         }
