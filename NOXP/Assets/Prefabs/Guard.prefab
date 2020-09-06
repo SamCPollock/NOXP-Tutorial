@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6513010445748515902}
-  - component: {fileID: 6513010445748515903}
   - component: {fileID: 6513010445748515888}
   - component: {fileID: 6513010445748515889}
   - component: {fileID: 8672394141905663377}
@@ -36,22 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6513010445748515903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6513010445748515890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46b811b6b63148345ad25103166081ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyRigidbody: {fileID: 0}
-  enemySpeed: 2
-  secondsBetweenSpawns: 0
-  enemyDamage: 0
 --- !u!54 &6513010445748515888
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyRigidbody: {fileID: 0}
-  enemySpeed: 0
+  enemySpeed: 2
   secondsBetweenSpawns: 0
   enemyDamage: 0
   myLight: {fileID: 6513010446360289894}
